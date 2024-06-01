@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E6AC8AD52C011D8A0052A91A /* DVCCalcModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AD32C011D8A0052A91A /* DVCCalcModel.xcdatamodeld */; };
+		E6AC8AE22C043F140052A91A /* PointBlock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AD62C043F140052A91A /* PointBlock+CoreDataClass.swift */; };
+		E6AC8AE32C043F140052A91A /* PointBlock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AD72C043F140052A91A /* PointBlock+CoreDataProperties.swift */; };
+		E6AC8AE42C043F140052A91A /* DateRange+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AD82C043F140052A91A /* DateRange+CoreDataClass.swift */; };
+		E6AC8AE52C043F140052A91A /* DateRange+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AD92C043F140052A91A /* DateRange+CoreDataProperties.swift */; };
+		E6AC8AE62C043F140052A91A /* Resort+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADA2C043F140052A91A /* Resort+CoreDataClass.swift */; };
+		E6AC8AE72C043F140052A91A /* Resort+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADB2C043F140052A91A /* Resort+CoreDataProperties.swift */; };
+		E6AC8AE82C043F140052A91A /* ViewType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADC2C043F140052A91A /* ViewType+CoreDataClass.swift */; };
+		E6AC8AE92C043F140052A91A /* ViewType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADD2C043F140052A91A /* ViewType+CoreDataProperties.swift */; };
+		E6AC8AEA2C043F140052A91A /* PointValue+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADE2C043F140052A91A /* PointValue+CoreDataClass.swift */; };
+		E6AC8AEB2C043F140052A91A /* PointValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADF2C043F140052A91A /* PointValue+CoreDataProperties.swift */; };
+		E6AC8AEC2C043F140052A91A /* RoomType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AE02C043F140052A91A /* RoomType+CoreDataClass.swift */; };
+		E6AC8AED2C043F140052A91A /* RoomType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AE12C043F140052A91A /* RoomType+CoreDataProperties.swift */; };
+		E6D8F6252BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */; };
+		E6D8F6272BF70AFA004C6916 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8F6262BF70AFA004C6916 /* ContentView.swift */; };
+		E6D8F6292BF70AFB004C6916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6D8F6282BF70AFB004C6916 /* Assets.xcassets */; };
+		E6D8F62C2BF70AFB004C6916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6D8F62B2BF70AFB004C6916 /* Preview Assets.xcassets */; };
+		E6D8F6342BFAFCE7004C6916 /* PointValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8F6332BFAFCE7004C6916 /* PointValueView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E6AC8AD42C011D8A0052A91A /* DVCCalcModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DVCCalcModel.xcdatamodel; sourceTree = "<group>"; };
+		E6AC8AD62C043F140052A91A /* PointBlock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointBlock+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E6AC8AD72C043F140052A91A /* PointBlock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointBlock+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6AC8AD82C043F140052A91A /* DateRange+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateRange+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E6AC8AD92C043F140052A91A /* DateRange+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateRange+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6AC8ADA2C043F140052A91A /* Resort+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resort+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E6AC8ADB2C043F140052A91A /* Resort+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resort+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6AC8ADC2C043F140052A91A /* ViewType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E6AC8ADD2C043F140052A91A /* ViewType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6AC8ADE2C043F140052A91A /* PointValue+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointValue+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E6AC8ADF2C043F140052A91A /* PointValue+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6AC8AE02C043F140052A91A /* RoomType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoomType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E6AC8AE12C043F140052A91A /* RoomType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoomType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6D8F6212BF70AFA004C6916 /* dvc-calc-data-generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dvc-calc-data-generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dvc_calc_data_generatorApp.swift; sourceTree = "<group>"; };
+		E6D8F6262BF70AFA004C6916 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E6D8F6282BF70AFB004C6916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E6D8F62B2BF70AFB004C6916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E6D8F62D2BF70AFB004C6916 /* dvc_calc_data_generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dvc_calc_data_generator.entitlements; sourceTree = "<group>"; };
+		E6D8F6332BFAFCE7004C6916 /* PointValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointValueView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E6D8F61E2BF70AFA004C6916 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E6D8F6182BF70AFA004C6916 = {
+			isa = PBXGroup;
+			children = (
+				E6AC8AD62C043F140052A91A /* PointBlock+CoreDataClass.swift */,
+				E6AC8AD72C043F140052A91A /* PointBlock+CoreDataProperties.swift */,
+				E6AC8AD82C043F140052A91A /* DateRange+CoreDataClass.swift */,
+				E6AC8AD92C043F140052A91A /* DateRange+CoreDataProperties.swift */,
+				E6AC8ADA2C043F140052A91A /* Resort+CoreDataClass.swift */,
+				E6AC8ADB2C043F140052A91A /* Resort+CoreDataProperties.swift */,
+				E6AC8ADC2C043F140052A91A /* ViewType+CoreDataClass.swift */,
+				E6AC8ADD2C043F140052A91A /* ViewType+CoreDataProperties.swift */,
+				E6AC8ADE2C043F140052A91A /* PointValue+CoreDataClass.swift */,
+				E6AC8ADF2C043F140052A91A /* PointValue+CoreDataProperties.swift */,
+				E6AC8AE02C043F140052A91A /* RoomType+CoreDataClass.swift */,
+				E6AC8AE12C043F140052A91A /* RoomType+CoreDataProperties.swift */,
+				E6AC8AD32C011D8A0052A91A /* DVCCalcModel.xcdatamodeld */,
+				E6D8F6232BF70AFA004C6916 /* dvc-calc-data-generator */,
+				E6D8F6222BF70AFA004C6916 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E6D8F6222BF70AFA004C6916 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E6D8F6212BF70AFA004C6916 /* dvc-calc-data-generator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E6D8F6232BF70AFA004C6916 /* dvc-calc-data-generator */ = {
+			isa = PBXGroup;
+			children = (
+				E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */,
+				E6D8F6262BF70AFA004C6916 /* ContentView.swift */,
+				E6D8F6282BF70AFB004C6916 /* Assets.xcassets */,
+				E6D8F62D2BF70AFB004C6916 /* dvc_calc_data_generator.entitlements */,
+				E6D8F62A2BF70AFB004C6916 /* Preview Content */,
+				E6D8F6332BFAFCE7004C6916 /* PointValueView.swift */,
+			);
+			path = "dvc-calc-data-generator";
+			sourceTree = "<group>";
+		};
+		E6D8F62A2BF70AFB004C6916 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E6D8F62B2BF70AFB004C6916 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E6D8F6202BF70AFA004C6916 /* dvc-calc-data-generator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6D8F6302BF70AFB004C6916 /* Build configuration list for PBXNativeTarget "dvc-calc-data-generator" */;
+			buildPhases = (
+				E6D8F61D2BF70AFA004C6916 /* Sources */,
+				E6D8F61E2BF70AFA004C6916 /* Frameworks */,
+				E6D8F61F2BF70AFA004C6916 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "dvc-calc-data-generator";
+			productName = "dvc-calc-data-generator";
+			productReference = E6D8F6212BF70AFA004C6916 /* dvc-calc-data-generator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6D8F6192BF70AFA004C6916 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					E6D8F6202BF70AFA004C6916 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+				};
+			};
+			buildConfigurationList = E6D8F61C2BF70AFA004C6916 /* Build configuration list for PBXProject "dvc-calc-data-generator" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E6D8F6182BF70AFA004C6916;
+			productRefGroup = E6D8F6222BF70AFA004C6916 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E6D8F6202BF70AFA004C6916 /* dvc-calc-data-generator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E6D8F61F2BF70AFA004C6916 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6D8F62C2BF70AFB004C6916 /* Preview Assets.xcassets in Resources */,
+				E6D8F6292BF70AFB004C6916 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E6D8F61D2BF70AFA004C6916 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6AC8AEA2C043F140052A91A /* PointValue+CoreDataClass.swift in Sources */,
+				E6AC8AE82C043F140052A91A /* ViewType+CoreDataClass.swift in Sources */,
+				E6AC8AED2C043F140052A91A /* RoomType+CoreDataProperties.swift in Sources */,
+				E6AC8AE72C043F140052A91A /* Resort+CoreDataProperties.swift in Sources */,
+				E6D8F6342BFAFCE7004C6916 /* PointValueView.swift in Sources */,
+				E6AC8AE32C043F140052A91A /* PointBlock+CoreDataProperties.swift in Sources */,
+				E6AC8AE62C043F140052A91A /* Resort+CoreDataClass.swift in Sources */,
+				E6D8F6272BF70AFA004C6916 /* ContentView.swift in Sources */,
+				E6D8F6252BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift in Sources */,
+				E6AC8AE52C043F140052A91A /* DateRange+CoreDataProperties.swift in Sources */,
+				E6AC8AE92C043F140052A91A /* ViewType+CoreDataProperties.swift in Sources */,
+				E6AC8AEC2C043F140052A91A /* RoomType+CoreDataClass.swift in Sources */,
+				E6AC8AD52C011D8A0052A91A /* DVCCalcModel.xcdatamodeld in Sources */,
+				E6AC8AE22C043F140052A91A /* PointBlock+CoreDataClass.swift in Sources */,
+				E6AC8AE42C043F140052A91A /* DateRange+CoreDataClass.swift in Sources */,
+				E6AC8AEB2C043F140052A91A /* PointValue+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E6D8F62E2BF70AFB004C6916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E6D8F62F2BF70AFB004C6916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		E6D8F6312BF70AFB004C6916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dvc-calc-data-generator/dvc_calc_data_generator.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"dvc-calc-data-generator/Preview Content\"";
+				DEVELOPMENT_TEAM = YB46Q2GKPA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tucker-dev.dvc-calc-data-generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E6D8F6322BF70AFB004C6916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dvc-calc-data-generator/dvc_calc_data_generator.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"dvc-calc-data-generator/Preview Content\"";
+				DEVELOPMENT_TEAM = YB46Q2GKPA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tucker-dev.dvc-calc-data-generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E6D8F61C2BF70AFA004C6916 /* Build configuration list for PBXProject "dvc-calc-data-generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6D8F62E2BF70AFB004C6916 /* Debug */,
+				E6D8F62F2BF70AFB004C6916 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6D8F6302BF70AFB004C6916 /* Build configuration list for PBXNativeTarget "dvc-calc-data-generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6D8F6312BF70AFB004C6916 /* Debug */,
+				E6D8F6322BF70AFB004C6916 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E6AC8AD32C011D8A0052A91A /* DVCCalcModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E6AC8AD42C011D8A0052A91A /* DVCCalcModel.xcdatamodel */,
+			);
+			currentVersion = E6AC8AD42C011D8A0052A91A /* DVCCalcModel.xcdatamodel */;
+			path = DVCCalcModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E6D8F6192BF70AFA004C6916 /* Project object */;
+}

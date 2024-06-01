@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23C64" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DateRange" representedClassName="DateRange" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="pointBlock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PointBlock" inverseName="dateRanges" inverseEntity="PointBlock"/>
+    </entity>
+    <entity name="PointBlock" representedClassName="PointBlock" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="dateRanges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateRange" inverseName="pointBlock" inverseEntity="DateRange"/>
+        <relationship name="resorts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resort" inverseName="pointBlocks" inverseEntity="Resort"/>
+    </entity>
+    <entity name="PointValue" representedClassName="PointValue" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="weekdayRate" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="weekendRate" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="viewType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ViewType" inverseName="pointValues" inverseEntity="ViewType"/>
+    </entity>
+    <entity name="Resort" representedClassName="Resort" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="resortName" optional="YES" attributeType="String"/>
+        <relationship name="pointBlocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointBlock" inverseName="resorts" inverseEntity="PointBlock"/>
+        <relationship name="roomTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RoomType" inverseName="resort" inverseEntity="RoomType"/>
+    </entity>
+    <entity name="RoomType" representedClassName="RoomType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="roomName" optional="YES" attributeType="String"/>
+        <relationship name="resort" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Resort" inverseName="roomTypes" inverseEntity="Resort"/>
+        <relationship name="viewTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ViewType" inverseName="roomType" inverseEntity="ViewType"/>
+    </entity>
+    <entity name="ViewType" representedClassName="ViewType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="roomCapacity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="viewName" optional="YES" attributeType="String"/>
+        <relationship name="pointValues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointValue" inverseName="viewType" inverseEntity="PointValue"/>
+        <relationship name="roomType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RoomType" inverseName="viewTypes" inverseEntity="RoomType"/>
+    </entity>
+</model>
