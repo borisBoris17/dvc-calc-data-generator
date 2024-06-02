@@ -20,6 +20,7 @@
 		E6AC8AEB2C043F140052A91A /* PointValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8ADF2C043F140052A91A /* PointValue+CoreDataProperties.swift */; };
 		E6AC8AEC2C043F140052A91A /* RoomType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AE02C043F140052A91A /* RoomType+CoreDataClass.swift */; };
 		E6AC8AED2C043F140052A91A /* RoomType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AE12C043F140052A91A /* RoomType+CoreDataProperties.swift */; };
+		E6AC8AF02C0C15CD0052A91A /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AC8AEF2C0C15CD0052A91A /* ContentView-ViewModel.swift */; };
 		E6D8F6252BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */; };
 		E6D8F6272BF70AFA004C6916 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8F6262BF70AFA004C6916 /* ContentView.swift */; };
 		E6D8F6292BF70AFB004C6916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6D8F6282BF70AFB004C6916 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		E6AC8ADF2C043F140052A91A /* PointValue+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E6AC8AE02C043F140052A91A /* RoomType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoomType+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E6AC8AE12C043F140052A91A /* RoomType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoomType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E6AC8AEF2C0C15CD0052A91A /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		E6D8F6212BF70AFA004C6916 /* dvc-calc-data-generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dvc-calc-data-generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dvc_calc_data_generatorApp.swift; sourceTree = "<group>"; };
 		E6D8F6262BF70AFA004C6916 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E6AC8AEE2C0C15B90052A91A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E6AC8AEF2C0C15CD0052A91A /* ContentView-ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		E6D8F6182BF70AFA004C6916 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 		E6D8F6232BF70AFA004C6916 /* dvc-calc-data-generator */ = {
 			isa = PBXGroup;
 			children = (
+				E6AC8AEE2C0C15B90052A91A /* ViewModels */,
 				E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */,
 				E6D8F6262BF70AFA004C6916 /* ContentView.swift */,
 				E6D8F6282BF70AFB004C6916 /* Assets.xcassets */,
@@ -192,6 +203,7 @@
 				E6D8F6252BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift in Sources */,
 				E6AC8AE52C043F140052A91A /* DateRange+CoreDataProperties.swift in Sources */,
 				E6AC8AE92C043F140052A91A /* ViewType+CoreDataProperties.swift in Sources */,
+				E6AC8AF02C0C15CD0052A91A /* ContentView-ViewModel.swift in Sources */,
 				E6AC8AEC2C043F140052A91A /* RoomType+CoreDataClass.swift in Sources */,
 				E6AC8AD52C011D8A0052A91A /* DVCCalcModel.xcdatamodeld in Sources */,
 				E6AC8AE22C043F140052A91A /* PointBlock+CoreDataClass.swift in Sources */,
