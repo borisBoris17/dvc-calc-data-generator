@@ -286,6 +286,291 @@ extension ContentView {
             }
         }
         
+        func createBayLakeResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let lakeStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Lake", capacity: 4)
+                let themeParkStudio = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Theme Park", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio, lakeStudio, themeParkStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let lakeOne = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Lake", capacity: 5)
+                let themeParkOne = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Theme Park", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne, lakeOne, themeParkOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let lakeTwo = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Lake", capacity: 9)
+                let themeParkTwo = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Theme Park", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo, lakeTwo, themeParkTwo], roomCategory: "Two-Bedroom")
+                
+                let lakeThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Lake", capacity: 12)
+                let themeParkThree = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Theme Park", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Grand Villa", viewTypes: [lakeThree, themeParkThree], roomCategory: "Three-Bedroom")
+                
+                let bayLakeRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: bayLakeRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Bay Lake Tower at Disney's Contempory Resort", shortName: "Bay Lake Tower", expireYear: 2060, roomTypes: NSSet(array: bayLakeRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createOldKeyWestResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree], roomCategory: "Three-Bedroom")
+                
+                let oldKeyWestRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: oldKeyWestRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Old Key West Resort", shortName: "Old Key West", expireYear: 2057, roomTypes: NSSet(array: oldKeyWestRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createSaratogaSpringsResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let preferredStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio, preferredStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let preferredOne = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne, preferredOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let preferredTwo = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo, preferredTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let preferredThree = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree, preferredThree], roomCategory: "Three-Bedroom")
+                
+                let standardTreehouse = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let treehouse = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Three-Bedroom Treehouse Villa", viewTypes: [standardTreehouse], roomCategory: "Three-Bedroom")
+                
+                let saratogaRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed, treehouse]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: saratogaRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Saratoga Springs Resort & Spa", shortName: "Saratoga Springs", expireYear: 2054, roomTypes: NSSet(array: saratogaRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createBoardwalkResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let boardwalkStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Boardwalk/Preferred", capacity: 5)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio, boardwalkStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let boardwalkOne = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Boardwalk/Preferred", capacity: 4)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne, boardwalkOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let boardwalkTwo = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Boardwalk/Preferred", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo, boardwalkTwo], roomCategory: "Two-Bedroom")
+                
+                let boardwalkThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Boardwalk/Preferred", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Grand Villa", viewTypes: [boardwalkThree], roomCategory: "Three-Bedroom")
+                
+                let boardwalkRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: boardwalkRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's BoardWalk Villas", shortName: "BoardWalk", expireYear: 2042, roomTypes: NSSet(array: boardwalkRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createBoulderRidgeResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 8)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo], roomCategory: "Two-Bedroom")
+                
+                let boulderRidgeRoomTypes = [deluxeStudio, oneBed, twoBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: boulderRidgeRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Boulder Ridge Villas at Disney's Wilderness Lodge", shortName: "Boulder Ridge", expireYear: 2042, roomTypes: NSSet(array: boulderRidgeRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createCopperCreekResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 8)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Villa", viewTypes: [standardThree], roomCategory: "Three-Bedroom")
+                
+                let standardCabin = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 8)
+                let cabin = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Two-Bedroom Villa", viewTypes: [standardCabin], roomCategory: "Two-Bedroom")
+                
+                let copperCreekRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed, cabin]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: copperCreekRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Copper Creek Villas & Cabins at Disney's Wilderness Lodge", shortName: "Copper Creek", expireYear: 2068, roomTypes: NSSet(array: copperCreekRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createBeachClubResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 8)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo], roomCategory: "Two-Bedroom")
+                
+                let beachClubRoomTypes = [deluxeStudio, oneBed, twoBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: beachClubRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Beach Club Villas", shortName: "Beach Club", expireYear: 2042, roomTypes: NSSet(array: beachClubRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createCabinResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 6)
+                let cabin = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Cabin", viewTypes: [standardStudio], roomCategory: "One-Bedroom")
+                
+                let cabinsRoomTypes = [cabin]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: cabinsRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "The Cabins at Disney's Fort Wilderness Resort", shortName: "The Cabins", expireYear: 2075, roomTypes: NSSet(array: cabinsRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
         func createKidaniResort() {
             
             if let description = container.persistentStoreDescriptions.first {

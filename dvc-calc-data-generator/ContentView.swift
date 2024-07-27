@@ -36,18 +36,74 @@ struct ContentView: View {
 //                    Text("Load Poly Data")
 //                }
                 
-                Button {
-                    viewModel.pointValues = []
-                    viewModel.createKidaniResort()
-                } label: {
-                    Text("Load Kidani Data")
-                }
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createKidaniResort()
+//                } label: {
+//                    Text("Load Kidani Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createJamboResort()
+//                } label: {
+//                    Text("Load Jambo Data")
+//                }
+                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createBayLakeResort()
+//                } label: {
+//                    Text("Load Bay Lake Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createBoulderRidgeResort()
+//                } label: {
+//                    Text("Load Boulder Ridge Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createCabinResort()
+//                } label: {
+//                    Text("Load Cabin Data")
+//                }
+                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createCopperCreekResort()
+//                } label: {
+//                    Text("Load copper creek Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createBeachClubResort()
+//                } label: {
+//                    Text("Load Beach Club Data")
+//                }
+                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createBoardwalkResort()
+//                } label: {
+//                    Text("Load BoardWalk Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createOldKeyWestResort()
+//                } label: {
+//                    Text("Load Old Key West Data")
+//                }
                 
                 Button {
                     viewModel.pointValues = []
-                    viewModel.createJamboResort()
+                    viewModel.createSaratogaSpringsResort()
                 } label: {
-                    Text("Load Jambo Data")
+                    Text("Load Saratoga Springs Data")
                 }
                 
 //                Button("Export") {
