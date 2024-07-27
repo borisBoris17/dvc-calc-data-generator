@@ -17,8 +17,6 @@ struct PointValueView: View {
     
     var body: some View {
         ForEach(roomType.viewTypeArray.indices, id: \.self) { i in
-//            let _ = print(roomType.wrappedRoomName)
-//            let _ = print(roomType.viewTypeArray)
             VStack {
                 TextField("Weekday Rate", text: $pointValues[i].weekdayRate)
                     .padding(.vertical)

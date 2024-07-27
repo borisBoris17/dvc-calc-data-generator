@@ -21,14 +21,17 @@
         <relationship name="viewType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ViewType" inverseName="pointValues" inverseEntity="ViewType"/>
     </entity>
     <entity name="Resort" representedClassName="Resort" syncable="YES">
+        <attribute name="expireYear" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="resortName" optional="YES" attributeType="String"/>
+        <attribute name="shortName" optional="YES" attributeType="String"/>
         <relationship name="pointBlocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointBlock" inverseName="resorts" inverseEntity="PointBlock"/>
         <relationship name="roomTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RoomType" inverseName="resort" inverseEntity="RoomType"/>
     </entity>
     <entity name="RoomType" representedClassName="RoomType" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="roomCategory" optional="YES" attributeType="String"/>
         <attribute name="roomName" optional="YES" attributeType="String"/>
         <relationship name="resort" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Resort" inverseName="roomTypes" inverseEntity="Resort"/>
         <relationship name="viewTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ViewType" inverseName="roomType" inverseEntity="ViewType"/>

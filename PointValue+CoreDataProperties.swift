@@ -10,8 +10,21 @@ import Foundation
 import CoreData
 
 
-extension PointValue {
-
+extension PointValue: Encodable  {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(startDate, forKey: .startDate)
+        try container.encode(endDate, forKey: .endDate)
+        try container.encode(weekdayRate, forKey: .weekdayRate)
+        try container.encode(weekendRate, forKey: .weekendRate)
+        try container.encode(viewType?.id, forKey: .viewTypeId)
+    }
+    
+    
+    private enum CodingKeys: String, CodingKey { case id, startDate, endDate, weekdayRate, weekendRate, viewTypeId }
+    
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PointValue> {
         return NSFetchRequest<PointValue>(entityName: "PointValue")
     }

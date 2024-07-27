@@ -9,27 +9,54 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var moc
     @State var viewModel = ViewModel()
+    
+//    @FetchRequest(
+//        entity: Resort.entity(),
+//        sortDescriptors: []
+//    ) var resorts: FetchedResults<Resort>
+    
+//    @FetchRequest(sortDescriptors: []) var resorts: FetchedResults<Resort>
     
     var body: some View {
         VStack {
             HStack {
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createRivieraResort()
+//                } label: {
+//                    Text("Load Riviera Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createPolyResort()
+//                } label: {
+//                    Text("Load Poly Data")
+//                }
+                
                 Button {
                     viewModel.pointValues = []
-                    viewModel.createRevieraResort()
+                    viewModel.createKidaniResort()
                 } label: {
-                    Text("Load Riviera Data")
+                    Text("Load Kidani Data")
                 }
                 
                 Button {
                     viewModel.pointValues = []
-                    viewModel.createPolyResort()
+                    viewModel.createJamboResort()
                 } label: {
-                    Text("Load Poly Data")
+                    Text("Load Jambo Data")
                 }
                 
-                Button("Export") {
-                    viewModel.exportStore()
+//                Button("Export") {
+//                    viewModel.exportStore()
+//                }
+                
+                Button("Export to Json") {
+//                    print(Array(resorts))
+                    viewModel.exportToJsonStore()
                 }
                 
                 Button("Clear Data") {

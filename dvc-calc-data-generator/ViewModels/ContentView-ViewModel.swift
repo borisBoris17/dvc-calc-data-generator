@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import CoreData
+//import UIKit
 
 extension ContentView {
     
@@ -15,6 +17,7 @@ extension ContentView {
         var resort: Resort?
         var pointValues: [[[(weekdayRate: String, weekendRate: String)]]] = []
         
+//        var context: NSManagedObjectContext
         let container = NSPersistentContainer(name: "DVCCalcModel")
         let storeURL = URL.documentsDirectory.appending(path: "dvcTest.store")
         
@@ -43,6 +46,7 @@ extension ContentView {
                             for dateRange in self.resort!.pointBlockArray[pointBlockIndex].dateRangeArray {
                                 
                                 let newPointValue = PointValue(context: self.container.viewContext)
+                                newPointValue.id = UUID()
                                 newPointValue.startDate = dateRange.wrappedStartDate
                                 newPointValue.endDate = dateRange.wrappedEndDate
                                 newPointValue.viewType = self.resort!.roomTypeArray[i].viewTypeArray[j]
@@ -69,10 +73,39 @@ extension ContentView {
         
         func exportStore() {
             do {
+                print("Export")
+//                try container.viewContext.save()
+                
+                let destination = URL(filePath: "/Users/tuckerbichsel/Desktop/dvc6a.store")
+                try FileManager.default.copyItem(at: storeURL, to: destination)
+            } catch {
+                print("Failed to create data: \(error.localizedDescription)")
+            }
+        }
+        
+        func exportToJsonStore() {
+//            func exportToJsonStore(for resorts: [Resort]) {
+            do {
+                print("Export to Json")
                 try container.viewContext.save()
                 
-                let destination = URL(filePath: "/Users/tuckerbichsel/Desktop/dvc.store")
-                try FileManager.default.copyItem(at: storeURL, to: destination)
+                let destination = URL(filePath: "/Users/tuckerbichsel/Desktop/dvc.json")
+                let encoder = JSONEncoder()
+                
+                var resorts  = [Resort]() // Where Locations = your NSManaged Class
+//
+////                var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Resort")
+//                let context = (UIApplication.shared.delegate as! AppDelegate).context
+                resorts = try container.viewContext.fetch(Resort.fetchRequest())
+                
+                do {
+                    let data = try encoder.encode(resorts)
+                    try data.write(to: destination)
+                } catch {
+                    print(error)
+                }
+                
+//                try FileManager.default.copyItem(at: storeURL, to: destination)
             } catch {
                 print("Failed to create data: \(error.localizedDescription)")
             }
@@ -170,21 +203,24 @@ extension ContentView {
             return viewType
         }
         
-        func createRoomType(context: NSManagedObjectContext, order: Int16, roomName: String, viewTypes: NSSet) -> RoomType {
+        func createRoomType(context: NSManagedObjectContext, order: Int16, roomName: String, viewTypes: NSSet, roomCategory: String) -> RoomType {
             let roomType = RoomType(context: self.container.viewContext)
             roomType.id = UUID()
             roomType.order = order
             roomType.roomName = roomName
             roomType.viewTypes = viewTypes
+            roomType.roomCategory = roomCategory
             
             return roomType
         }
         
-        func createResort(context: NSManagedObjectContext, resortName: String, roomTypes: NSSet, pointBlocks: NSSet) -> Resort {
+        func createResort(context: NSManagedObjectContext, resortName: String, shortName: String, expireYear: Int16, roomTypes: NSSet, pointBlocks: NSSet) -> Resort {
             let newResort = Resort(context: self.container.viewContext)
             newResort.id = UUID()
             newResort.resortName = resortName
+            newResort.shortName = shortName
             newResort.roomTypes = roomTypes
+            newResort.expireYear = expireYear
             newResort.pointBlocks = pointBlocks
             
             return newResort
@@ -209,7 +245,7 @@ extension ContentView {
             return buildPointValues
         }
         
-        func createRevieraResort() {
+        func createRivieraResort() {
             
             if let description = container.persistentStoreDescriptions.first {
                 
@@ -223,22 +259,22 @@ extension ContentView {
             container.loadPersistentStores { description, error in
                 
                 let standardTower = self.createViewType(context: self.container.viewContext, order: 1, viewName: "", capacity: 2)
-                let towerStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Tower Studio", viewTypes: [standardTower])
+                let towerStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Tower Studio", viewTypes: [standardTower], roomCategory: "Studio")
                 
                 let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
                 let prefStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 5)
-                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio, prefStudio])
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio, prefStudio], roomCategory: "Studio")
                 
                 let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
                 let prefOne = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 5)
-                let oneBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "One-Bedroom Villa", viewTypes: [standardOne, prefOne])
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "One-Bedroom Villa", viewTypes: [standardOne, prefOne], roomCategory: "One-Bedroom")
                 
                 let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
                 let prefTwo = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Preferred", capacity: 9)
-                let twoBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo, prefTwo])
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo, prefTwo], roomCategory: "Two-Bedroom")
                 
                 let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "", capacity: 12)
-                let threeBed = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree])
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree], roomCategory: "Three-Bedroom")
                 
                 let rivieraRoomTypes = [towerStudio, deluxeStudio, oneBed, twoBed, threeBed]
                 
@@ -246,7 +282,97 @@ extension ContentView {
                 
                 self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: rivieraRoomTypes)
                 
-                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Riviera Resort", roomTypes: NSSet(array: rivieraRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Riviera Resort", shortName: "Riviera", expireYear: 2070, roomTypes: NSSet(array: rivieraRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createKidaniResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let valueStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Value", capacity: 4)
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Standard", capacity: 4)
+                let savannaStudio = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Savanna", capacity: 4)
+                let clubStudio = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Kilimanjaro Club Concierge", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [valueStudio, standardStudio, savannaStudio, clubStudio], roomCategory: "Studio")
+                
+                let valueOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Value", capacity: 5)
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Standard", capacity: 5)
+                let savannaOne = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Savanna", capacity: 5)
+                let clubOne = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Kilimanjaro Club Concierge", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [valueOne, standardOne, savannaOne, clubOne], roomCategory: "One-Bedroom")
+                
+                let valueTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Value", capacity: 9)
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Standard", capacity: 9)
+                let savannaTwo = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Savanna", capacity: 9)
+                let clubTwo = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Kilimanjaro Club Concierge", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Two-Bedroom Villa", viewTypes: [valueTwo, standardTwo, savannaTwo, clubTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let savannaThree = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Savanna", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree, savannaThree], roomCategory: "Three-Bedroom")
+                
+                let kidaniRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: kidaniRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Animal Kingdome Villas - Kidani Village", shortName: "Kidani Village", expireYear: 2057, roomTypes: NSSet(array: kidaniRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createJamboResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let valueStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Value", capacity: 4)
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Standard", capacity: 4)
+                let savannaStudio = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Savanna", capacity: 4)
+                let clubStudio = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Kilimanjaro Club Concierge", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [valueStudio, standardStudio, savannaStudio, clubStudio], roomCategory: "Studio")
+                
+                let valueOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Value", capacity: 5)
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Standard", capacity: 5)
+                let savannaOne = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Savanna", capacity: 5)
+                let clubOne = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Kilimanjaro Club Concierge", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [valueOne, standardOne, savannaOne, clubOne], roomCategory: "One-Bedroom")
+                
+                let valueTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Value", capacity: 9)
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Standard", capacity: 9)
+                let savannaTwo = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Savanna", capacity: 9)
+                let clubTwo = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Kilimanjaro Club Concierge", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Two-Bedroom Villa", viewTypes: [valueTwo, standardTwo, savannaTwo, clubTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let savannaThree = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Savanna", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree, savannaThree], roomCategory: "Three-Bedroom")
+                
+                let jamboRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildDisney2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: jamboRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Animal Kingdome Villas - Jambo House", shortName: "Jambo House", expireYear: 2057, roomTypes: NSSet(array: jamboRoomTypes), pointBlocks: NSSet(array: pointBlocks))
             }
         }
         
@@ -265,10 +391,10 @@ extension ContentView {
                 
                 let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
                 let prefStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Lake", capacity: 5)
-                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio, prefStudio])
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio, prefStudio], roomCategory: "Studio")
                 
                 let LakeBungalow = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Lake", capacity: 8)
-                let bungalow = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Two-Bedroom Bungalow", viewTypes: [LakeBungalow])
+                let bungalow = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Two-Bedroom Bungalow", viewTypes: [LakeBungalow], roomCategory: "Two-Bedroom")
                 
                 let polyRoomTypes = [deluxeStudio, bungalow]
                 
@@ -276,7 +402,7 @@ extension ContentView {
                 
                 self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: polyRoomTypes)
                 
-                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Polynesian Villas & Bungalows", roomTypes: NSSet(array: polyRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Polynesian Villas & Bungalows", shortName: "Polynesian", expireYear: 2066, roomTypes: NSSet(array: polyRoomTypes), pointBlocks: NSSet(array: pointBlocks))
             }
         }
         
