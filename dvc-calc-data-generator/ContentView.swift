@@ -106,18 +106,39 @@ struct ContentView: View {
 //                    Text("Load Saratoga Springs Data")
 //                }
                 
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createGrandCalifornianResort()
+//                } label: {
+//                    Text("Load Grand Californian Data")
+//                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createDisneylandVillasResort()
+//                } label: {
+//                    Text("Load Disneyland Villas Data")
+//                }
+                
                 Button {
                     viewModel.pointValues = []
-                    viewModel.createGrandCalifornianResort()
+                    viewModel.createAulaniResortData()
                 } label: {
-                    Text("Load Grand Californian Data")
+                    Text("Load Aulaani Data")
                 }
                 
                 Button {
                     viewModel.pointValues = []
-                    viewModel.createDisneylandVillasResort()
+                    viewModel.createHiltonHeadResort()
                 } label: {
-                    Text("Load Disneyland Villas Data")
+                    Text("Load Hilton Head Data")
+                }
+                
+                Button {
+                    viewModel.pointValues = []
+                    viewModel.createdVeroBeachResort()
+                } label: {
+                    Text("Load Vero Beach Data")
                 }
                 
 //                Button("Export") {

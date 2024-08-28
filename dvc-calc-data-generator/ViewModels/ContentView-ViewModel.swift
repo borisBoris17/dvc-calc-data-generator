@@ -320,6 +320,171 @@ extension ContentView {
             return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
         }
         
+        func buildAulani2025PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            
+            let janFebRange = DateRange(context: container.viewContext)
+            janFebRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 5))!
+            janFebRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 2, day: 22))!
+            let earlyFallRange = DateRange(context: container.viewContext)
+            earlyFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 31))!
+            earlyFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 10, day: 11))!
+            let midNovemberRange = DateRange(context: container.viewContext)
+            midNovemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 11))!
+            midNovemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 24))!
+            let earlyDecemberRange = DateRange(context: container.viewContext)
+            earlyDecemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 30))!
+            earlyDecemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 18))!
+            pointBlock1.dateRanges = [janFebRange, earlyFallRange, midNovemberRange, earlyDecemberRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let endAprilRange = DateRange(context: container.viewContext)
+            endAprilRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 27))!
+            endAprilRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 28))!
+            let lateSpringRange = DateRange(context: container.viewContext)
+            lateSpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 6))!
+            lateSpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 29))!
+            let fallRange = DateRange(context: container.viewContext)
+            fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 10, day: 12))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 10))!
+            pointBlock2.dateRanges = [endAprilRange, lateSpringRange, fallRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let earlySpringRange = DateRange(context: container.viewContext)
+            earlySpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 2, day: 23))!
+            earlySpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 10))!
+            let endAugustRange = DateRange(context: container.viewContext)
+            endAugustRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 11))!
+            endAugustRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 30))!
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 25))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 29))!
+            pointBlock3.dateRanges = [earlySpringRange, endAugustRange, thanksgivingRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let newYearRange = DateRange(context: container.viewContext)
+            newYearRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
+            newYearRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 4))!
+            let springBreakRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 11))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 26))!
+            let springRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 29))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 5))!
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 30))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 10))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 19))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 31))!
+            pointBlock4.dateRanges = [newYearRange, springBreakRange, springRange, summerRange, christmasRange]
+            pointBlock4.order = 4
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
+        }
+        
+        func buildHiltonHead2025PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            
+            let janRange = DateRange(context: container.viewContext)
+            janRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
+            janRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 31))!
+            let earlyDecemberRange = DateRange(context: container.viewContext)
+            earlyDecemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 1))!
+            earlyDecemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 17))!
+            pointBlock1.dateRanges = [janRange, earlyDecemberRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let lateWinderRange = DateRange(context: container.viewContext)
+            lateWinderRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 2, day: 1))!
+            lateWinderRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 31))!
+            let novemberRange = DateRange(context: container.viewContext)
+            novemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 1))!
+            novemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 30))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 18))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 31))!
+            pointBlock2.dateRanges = [lateWinderRange, novemberRange, christmasRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let springRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 1))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 10))!
+            let earlyFallRange = DateRange(context: container.viewContext)
+            earlyFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 28))!
+            earlyFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 10, day: 31))!
+            pointBlock3.dateRanges = [springRange, earlyFallRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 11))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 27))!
+            pointBlock4.dateRanges = [summerRange]
+            pointBlock4.order = 4
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
+        }
+        
+        func buildVeroBeach2025PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            
+            let fallRange = DateRange(context: container.viewContext)
+            fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 9, day: 1))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 25))!
+            pointBlock1.dateRanges = [fallRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let mayRange = DateRange(context: container.viewContext)
+            mayRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 1))!
+            mayRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 5, day: 31))!
+            let earlyDecemberRange = DateRange(context: container.viewContext)
+            earlyDecemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 29))!
+            earlyDecemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 23))!
+            pointBlock2.dateRanges = [mayRange, earlyDecemberRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let janRange = DateRange(context: container.viewContext)
+            janRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
+            janRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 31))!
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 1))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 8, day: 31))!
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 26))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 11, day: 28))!
+            pointBlock3.dateRanges = [janRange, summerRange, thanksgivingRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let lateWinterRange = DateRange(context: container.viewContext)
+            lateWinterRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 2, day: 1))!
+            lateWinterRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 8))!
+            let springBreakRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 27))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 30))!
+            pointBlock4.dateRanges = [lateWinterRange, springBreakRange]
+            pointBlock4.order = 4
+            
+            let pointBlock5 = PointBlock(context: container.viewContext)
+            let springRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 3, day: 9))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: 26))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 24))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2025, month: 12, day: 31))!
+            pointBlock5.dateRanges = [springRange, christmasRange]
+            pointBlock5.order = 5
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4, pointBlock5]
+        }
         
         func createViewType(context: NSManagedObjectContext, order: Int16, viewName: String, capacity: Int16) -> ViewType {
             let viewType = ViewType(context: self.container.viewContext)
@@ -897,6 +1062,116 @@ extension ContentView {
                 self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: disneylandVillaRoomTypes)
                 
                 self.resort = self.createResort(context: self.container.viewContext, resortName: "The Villas at Disneyland Hotel", shortName: "Disneyland Hotel", expireYear: 2074, roomTypes: NSSet(array: disneylandVillaRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createAulaniResortData() {
+            
+            let standardDuo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 2)
+            let hotelStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Hotel Room", viewTypes: [standardDuo], roomCategory: "Studio")
+            
+            let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+            let islandGardensStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Island Gardens", capacity: 4)
+            let poolGardensStudio = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Poolside Gardens", capacity: 4)
+            let oceanStudio = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Ocean", capacity: 4)
+            let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio, islandGardensStudio, poolGardensStudio, oceanStudio], roomCategory: "Studio")
+            
+            let standardOneBed = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+            let islandGardensOneBed = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Island Gardens", capacity: 5)
+            let poolGardensOneBed = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Poolside Gardens", capacity: 5)
+            let oceanOneBed = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Ocean", capacity: 5)
+            let oneBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "One-Bedroom Villa", viewTypes: [standardOneBed, islandGardensOneBed, poolGardensOneBed, oceanOneBed], roomCategory: "One-Bedroom")
+            
+            let standardTwoBed = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+            let islandGardensTwoBed = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Island Gardens", capacity: 9)
+            let poolGardensTwoBed = self.createViewType(context: self.container.viewContext, order: 3, viewName: "Poolside Gardens", capacity: 9)
+            let oceanTwoBed = self.createViewType(context: self.container.viewContext, order: 4, viewName: "Ocean", capacity: 9)
+            let twoBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Two-Bedroom Villa", viewTypes: [standardTwoBed, islandGardensTwoBed, poolGardensTwoBed, oceanTwoBed], roomCategory: "Two-Bedroom")
+            
+            let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+            let oceanThree = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Ocean", capacity: 12)
+            let threeBed = self.createRoomType(context: self.container.viewContext, order: 5, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree, oceanThree], roomCategory: "Three-Bedroom")
+            
+            let aulaniRoomTypes = [hotelStudio, deluxeStudio, oneBed, twoBed, threeBed]
+            
+            let pointBlocks = self.buildAulani2025PointBlocks()
+            
+            self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: aulaniRoomTypes)
+            
+            self.resort = self.createResort(context: self.container.viewContext, resortName: "Aulani Disney Vacation Club Villas", shortName: "Aulani", expireYear: 2062, roomTypes: NSSet(array: aulaniRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+        }
+        
+        func createHiltonHeadResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Studio", viewTypes: [standardStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree], roomCategory: "Three-Bedroom")
+                
+                let hiltonHeadRoomTypes = [deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildHiltonHead2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: hiltonHeadRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Hilton Head Island Resort", shortName: "Hilton Head Island", expireYear: 2042, roomTypes: NSSet(array: hiltonHeadRoomTypes), pointBlocks: NSSet(array: pointBlocks))
+            }
+        }
+        
+        func createdVeroBeachResort() {
+            
+            if let description = container.persistentStoreDescriptions.first {
+                
+                // Make Core Data write to our new store URL.
+                description.url = storeURL
+                
+                // Force WAL mode off.
+                description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
+            }
+            
+            container.loadPersistentStores { description, error in
+                
+                let standardInnStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let oceanInnStudio = self.createViewType(context: self.container.viewContext, order: 2, viewName: "Ocean", capacity: 4)
+                let deluxeInnStudio = self.createRoomType(context: self.container.viewContext, order: 1, roomName: "Deluxe Inn Room", viewTypes: [standardInnStudio, oceanInnStudio], roomCategory: "Studio")
+                
+                let standardStudio = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 4)
+                let deluxeStudio = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio], roomCategory: "Studio")
+                
+                let standardOne = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 5)
+                let oneBed = self.createRoomType(context: self.container.viewContext, order: 2, roomName: "One-Bedroom Villa", viewTypes: [standardOne], roomCategory: "One-Bedroom")
+                
+                let standardTwo = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 9)
+                let twoBed = self.createRoomType(context: self.container.viewContext, order: 3, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo], roomCategory: "Two-Bedroom")
+                
+                let standardThree = self.createViewType(context: self.container.viewContext, order: 1, viewName: "Standard", capacity: 12)
+                let threeBed = self.createRoomType(context: self.container.viewContext, order: 4, roomName: "Three-Bedroom Beach Cottage", viewTypes: [standardThree], roomCategory: "Three-Bedroom")
+                
+                let veroBeachRoomTypes = [deluxeInnStudio, deluxeStudio, oneBed, twoBed, threeBed]
+                
+                let pointBlocks = self.buildVeroBeach2025PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: veroBeachRoomTypes)
+                
+                self.resort = self.createResort(context: self.container.viewContext, resortName: "Disney's Vero Beach Resort", shortName: "Vero Beach", expireYear: 2042, roomTypes: NSSet(array: veroBeachRoomTypes), pointBlocks: NSSet(array: pointBlocks))
             }
         }
         
