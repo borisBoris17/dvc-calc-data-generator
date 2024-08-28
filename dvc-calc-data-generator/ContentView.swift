@@ -98,12 +98,26 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load Old Key West Data")
 //                }
+//                
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createSaratogaSpringsResort()
+//                } label: {
+//                    Text("Load Saratoga Springs Data")
+//                }
                 
                 Button {
                     viewModel.pointValues = []
-                    viewModel.createSaratogaSpringsResort()
+                    viewModel.createGrandCalifornianResort()
                 } label: {
-                    Text("Load Saratoga Springs Data")
+                    Text("Load Grand Californian Data")
+                }
+                
+                Button {
+                    viewModel.pointValues = []
+                    viewModel.createDisneylandVillasResort()
+                } label: {
+                    Text("Load Disneyland Villas Data")
                 }
                 
 //                Button("Export") {
