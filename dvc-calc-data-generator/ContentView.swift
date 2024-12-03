@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @Environment(\.managedObjectContext) var moc
+//    @Environment(\.managedObjectContext) var moc
     @State var viewModel = ViewModel()
     
 //    @FetchRequest(
@@ -28,13 +28,21 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load Riviera Data")
 //                }
-//                
+
+                Button {
+                    viewModel.pointValues = []
+                    viewModel.createTowerPolyResort()
+                } label: {
+                    Text("Load Tower Poly Data")
+                }
+                
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createPolyResort()
 //                } label: {
 //                    Text("Load Poly Data")
 //                }
+//
                 
 //                Button {
 //                    viewModel.pointValues = []
@@ -42,7 +50,7 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load Kidani Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createJamboResort()
@@ -56,14 +64,14 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load Bay Lake Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createBoulderRidgeResort()
 //                } label: {
 //                    Text("Load Boulder Ridge Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createCabinResort()
@@ -77,7 +85,7 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load copper creek Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createBeachClubResort()
@@ -91,14 +99,14 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load BoardWalk Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createOldKeyWestResort()
 //                } label: {
 //                    Text("Load Old Key West Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createSaratogaSpringsResort()
@@ -112,7 +120,7 @@ struct ContentView: View {
 //                } label: {
 //                    Text("Load Grand Californian Data")
 //                }
-//                
+//
 //                Button {
 //                    viewModel.pointValues = []
 //                    viewModel.createDisneylandVillasResort()
@@ -120,25 +128,31 @@ struct ContentView: View {
 //                    Text("Load Disneyland Villas Data")
 //                }
                 
-                Button {
-                    viewModel.pointValues = []
-                    viewModel.createAulaniResortData()
-                } label: {
-                    Text("Load Aulaani Data")
-                }
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createAulaniResortData()
+//                } label: {
+//                    Text("Load Aulaani Data")
+//                }
+//
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createHiltonHeadResort()
+//                } label: {
+//                    Text("Load Hilton Head Data")
+//                }
+//
+//                Button {
+//                    viewModel.pointValues = []
+//                    viewModel.createdVeroBeachResort()
+//                } label: {
+//                    Text("Load Vero Beach Data")
+//                }
                 
                 Button {
-                    viewModel.pointValues = []
-                    viewModel.createHiltonHeadResort()
+                    viewModel.loadData()
                 } label: {
-                    Text("Load Hilton Head Data")
-                }
-                
-                Button {
-                    viewModel.pointValues = []
-                    viewModel.createdVeroBeachResort()
-                } label: {
-                    Text("Load Vero Beach Data")
+                    Text("Load Data")
                 }
                 
 //                Button("Export") {
@@ -152,6 +166,83 @@ struct ContentView: View {
                 
                 Button("Clear Data") {
                     viewModel.clearStore()
+                }
+            }
+            
+            if viewModel.allResorts.count > 0 {
+                ForEach(viewModel.allResorts) { resort in
+                    VStack {
+                        ForEach(resort.roomTypeArray) { roomType in
+                            VStack {
+                                Text(roomType.wrappedRoomName)
+                                
+                                ForEach(roomType.viewTypeArray) { viewType in
+                                    Text(viewType.wrappedViewName)
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                Picker("Resort", selection: $viewModel.selectedResort) {
+                    Text("Select a Resort")
+                        .tag(nil as Resort?)
+                    
+                    ForEach(viewModel.allResorts) { resort in
+                        Text(resort.wrappedResortName)
+                            .tag(resort as Resort?)
+                    }
+                }
+                .onChange(of: viewModel.selectedResort) { _, selectedResort in
+                    viewModel.prepareSelectedResort()
+                }
+            }
+            
+            if viewModel.selectedResort != nil && viewModel.selectedPointBlocks.count > 0 {
+                VStack {
+                    Grid {
+                        GridRow {
+                            Text("")
+                            Text("")
+                            ForEach(viewModel.selectedResort!.roomTypeArray) { roomType in
+                                ForEach(roomType.viewTypeArray, id: \.self) { viewType in
+                                    Text("\(roomType.wrappedRoomName) - \(viewType.wrappedViewName)")
+                                }
+                            }
+                        }
+                        
+                        ForEach(viewModel.selectedPointBlocks.indices, id: \.self) { g in
+                            GridRow {
+                                VStack {
+                                    ForEach(viewModel.selectedPointBlocks[g].dateRangeArray, id: \.self) { dateRange in
+                                        HStack {
+                                            Text(dateRange.wrappedStartDate, format: .dateTime.month().day())
+                                            Text("-")
+                                            Text(dateRange.wrappedEndDate, format: .dateTime.month().day())
+                                        }
+                                    }
+                                }
+                                
+                                VStack {
+                                    Text("Weekday Rate")
+                                        .padding(.vertical)
+                                    Text("Weekend Rate")
+                                }
+                                
+                                ForEach(viewModel.selectedResort!.roomTypeArray.indices, id: \.self) { i in
+                                    PointValueView(pointValues: $viewModel.pointValues[g][i], roomType: viewModel.selectedResort!.roomTypeArray[i])
+                                }
+                            }
+                        }
+                    }
+                    
+                    HStack {
+                        Button("Save") {
+                            print("Save the data...")
+                            viewModel.saveSelectedResort()
+                        }
+                    }
+                    .padding(.top)
                 }
             }
             
@@ -209,6 +300,9 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+        .onAppear {
+            viewModel.loadExistingData()
+        }
     }
 }
 
