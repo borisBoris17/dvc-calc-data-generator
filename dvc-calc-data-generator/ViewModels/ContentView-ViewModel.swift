@@ -26,7 +26,7 @@ extension ContentView {
         let container = NSPersistentContainer(name: "DVCCalcModel")
         let storeURL = URL.documentsDirectory.appending(path: "dvcTest.store")
         
-        let disneyWorldResortShortNames = ["Riviera"]
+        let disneyWorldResortShortNames = ["Riviera", "Polynesian", "Boulder Ridge", "The Cabins"]
         
         func saveResort() {
             
@@ -203,6 +203,8 @@ extension ContentView {
             }
         }
         
+        
+        
         func loadData() {
             
 //            let disneyWorldPointBlocks2025 = self.buildDisney2025PointBlocks()
@@ -219,31 +221,13 @@ extension ContentView {
             
             container.loadPersistentStores { description, error in
                 
-                let standardTower = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "3DE13688-07E3-49F4-9170-0C0C38CB2640")!, order: 1, viewName: "Standard", capacity: 2)
-                let towerStudio = self.createRoomTypeWithId(context: self.container.viewContext, roomTypeId: UUID(uuidString: "4CD654BB-4D90-402D-9543-A60F6F198930")!, order: 1, roomName: "Tower Studio", viewTypes: [standardTower], roomCategory: "Studio")
+                loadRivieraResortData(context: self.container.viewContext)
                 
-                let standardStudio = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "E9C8FBC5-D804-4FFF-9A99-DE0C8903DD05")!, order: 1, viewName: "Standard", capacity: 5)
-                let prefStudio = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "433D537A-3AD9-42E7-A13C-E8753CE93655")!, order: 2, viewName: "Preferred", capacity: 5)
-                let deluxeStudio = self.createRoomTypeWithId(context: self.container.viewContext, roomTypeId: UUID(uuidString: "57F2022F-0760-479B-BE56-DC5633A6B57F")!, order: 2, roomName: "Deluxe Studio", viewTypes: [standardStudio, prefStudio], roomCategory: "Studio")
+                loadPolyResortData(context: self.container.viewContext)
                 
-                let standardOne = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "CE0C5C2F-8EFC-453C-A49B-223BF584289F")!, order: 1, viewName: "Standard", capacity: 5)
-                let prefOne = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "C261961B-A926-484A-82F3-59542E18FEEA")!, order: 2, viewName: "Preferred", capacity: 5)
-                let oneBed = self.createRoomTypeWithId(context: self.container.viewContext, roomTypeId: UUID(uuidString: "D40B7A74-B7EA-472C-B324-2F320CD408F4")!, order: 3, roomName: "One-Bedroom Villa", viewTypes: [standardOne, prefOne], roomCategory: "One-Bedroom")
+                loadBoulderRidgeResortData(context: self.container.viewContext)
                 
-                let standardTwo = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "11E9C1A1-9DB6-4D5F-8179-49BF002D817C")!, order: 1, viewName: "Standard", capacity: 9)
-                let prefTwo = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "CD6403EA-551C-4EAE-A7F4-C9942B800E1A")!, order: 2, viewName: "Preferred", capacity: 9)
-                let twoBed = self.createRoomTypeWithId(context: self.container.viewContext, roomTypeId: UUID(uuidString: "2B923BAB-3565-4C2A-B85A-6D007C9B10FC")!, order: 4, roomName: "Two-Bedroom Villa", viewTypes: [standardTwo, prefTwo], roomCategory: "Two-Bedroom")
-                
-                let standardThree = self.createViewTypeWithId(context: self.container.viewContext, viewTypeId: UUID(uuidString: "383911E7-4E09-4B24-8D4E-9704790C00AE")!, order: 1, viewName: "Standard", capacity: 12)
-                let threeBed = self.createRoomTypeWithId(context: self.container.viewContext, roomTypeId: UUID(uuidString: "27B94ED1-56AD-4D15-AFCF-23C04D3E27B9")!, order: 5, roomName: "Three-Bedroom Grand Villa", viewTypes: [standardThree], roomCategory: "Three-Bedroom")
-                
-                let rivieraRoomTypes = [towerStudio, deluxeStudio, oneBed, twoBed, threeBed]
-                
-//                let pointBlocks = self.buildDisney2025PointBlocks()
-                
-//                self.pointValues = self.createPointValueInputs(pointBlocks: pointBlocks, roomTypes: rivieraRoomTypes)
-                
-                self.resort = self.createResortWithId(context: self.container.viewContext, resortId: UUID(uuidString: "E227F61E-33C9-49D0-8F1D-39388C891CF0")!, resortName: "Disney's Riviera Resort", shortName: "Riviera", expireYear: 2070, roomTypes: NSSet(array: rivieraRoomTypes), pointBlocks: NSSet(array: []))
+                loadCabinResortData(context: self.container.viewContext)
             }
             
             do {
@@ -695,16 +679,6 @@ extension ContentView {
             return [pointBlock1, pointBlock2, pointBlock3, pointBlock4, pointBlock5]
         }
         
-        func createViewTypeWithId(context: NSManagedObjectContext, viewTypeId: UUID, order: Int16, viewName: String, capacity: Int16) -> ViewType {
-            let viewType = ViewType(context: self.container.viewContext)
-            viewType.id = viewTypeId
-            viewType.order = order
-            viewType.viewName = viewName
-            viewType.roomCapacity = capacity
-            
-            return viewType
-        }
-        
         func createViewType(context: NSManagedObjectContext, order: Int16, viewName: String, capacity: Int16) -> ViewType {
             let viewType = ViewType(context: self.container.viewContext)
             viewType.id = UUID()
@@ -713,17 +687,6 @@ extension ContentView {
             viewType.roomCapacity = capacity
             
             return viewType
-        }
-        
-        func createRoomTypeWithId(context: NSManagedObjectContext, roomTypeId: UUID, order: Int16, roomName: String, viewTypes: NSSet, roomCategory: String) -> RoomType {
-            let roomType = RoomType(context: self.container.viewContext)
-            roomType.id = roomTypeId
-            roomType.order = order
-            roomType.roomName = roomName
-            roomType.viewTypes = viewTypes
-            roomType.roomCategory = roomCategory
-            
-            return roomType
         }
         
         func createRoomType(context: NSManagedObjectContext, order: Int16, roomName: String, viewTypes: NSSet, roomCategory: String) -> RoomType {
@@ -735,18 +698,6 @@ extension ContentView {
             roomType.roomCategory = roomCategory
             
             return roomType
-        }
-        
-        func createResortWithId(context: NSManagedObjectContext, resortId: UUID, resortName: String, shortName: String, expireYear: Int16, roomTypes: NSSet, pointBlocks: NSSet) -> Resort {
-            let newResort = Resort(context: self.container.viewContext)
-            newResort.id = resortId
-            newResort.resortName = resortName
-            newResort.shortName = shortName
-            newResort.roomTypes = roomTypes
-            newResort.expireYear = expireYear
-            newResort.pointBlocks = pointBlocks
-            
-            return newResort
         }
         
         func createResort(context: NSManagedObjectContext, resortName: String, shortName: String, expireYear: Int16, roomTypes: NSSet, pointBlocks: NSSet) -> Resort {

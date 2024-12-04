@@ -170,19 +170,6 @@ struct ContentView: View {
             }
             
             if viewModel.allResorts.count > 0 {
-                ForEach(viewModel.allResorts) { resort in
-                    VStack {
-                        ForEach(resort.roomTypeArray) { roomType in
-                            VStack {
-                                Text(roomType.wrappedRoomName)
-                                
-                                ForEach(roomType.viewTypeArray) { viewType in
-                                    Text(viewType.wrappedViewName)
-                                }
-                            }
-                        }
-                    }
-                }
                 
                 Picker("Resort", selection: $viewModel.selectedResort) {
                     Text("Select a Resort")
