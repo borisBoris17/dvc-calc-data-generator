@@ -27,7 +27,7 @@
 		E6D8F6292BF70AFB004C6916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6D8F6282BF70AFB004C6916 /* Assets.xcassets */; };
 		E6D8F62C2BF70AFB004C6916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6D8F62B2BF70AFB004C6916 /* Preview Assets.xcassets */; };
 		E6D8F6342BFAFCE7004C6916 /* PointValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8F6332BFAFCE7004C6916 /* PointValueView.swift */; };
-		E6DE23072D000C6D00799908 /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE23062D000C5900799908 /* LoadData.swift */; };
+		E6DE23072D000C6D00799908 /* LoadResortData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE23062D000C5900799908 /* LoadResortData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		E6D8F62B2BF70AFB004C6916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E6D8F62D2BF70AFB004C6916 /* dvc_calc_data_generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dvc_calc_data_generator.entitlements; sourceTree = "<group>"; };
 		E6D8F6332BFAFCE7004C6916 /* PointValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointValueView.swift; sourceTree = "<group>"; };
-		E6DE23062D000C5900799908 /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
+		E6DE23062D000C5900799908 /* LoadResortData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResortData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 		E6D8F6232BF70AFA004C6916 /* dvc-calc-data-generator */ = {
 			isa = PBXGroup;
 			children = (
-				E6DE23062D000C5900799908 /* LoadData.swift */,
+				E6DE23062D000C5900799908 /* LoadResortData.swift */,
 				E6AC8AEE2C0C15B90052A91A /* ViewModels */,
 				E6D8F6242BF70AFA004C6916 /* dvc_calc_data_generatorApp.swift */,
 				E6D8F6262BF70AFA004C6916 /* ContentView.swift */,
@@ -212,7 +212,7 @@
 				E6AC8AF02C0C15CD0052A91A /* ContentView-ViewModel.swift in Sources */,
 				E6AC8AEC2C043F140052A91A /* RoomType+CoreDataClass.swift in Sources */,
 				E6B272622C48D44B0030B632 /* DataController.swift in Sources */,
-				E6DE23072D000C6D00799908 /* LoadData.swift in Sources */,
+				E6DE23072D000C6D00799908 /* LoadResortData.swift in Sources */,
 				E6AC8AD52C011D8A0052A91A /* DVCCalcModel.xcdatamodeld in Sources */,
 				E6AC8AE22C043F140052A91A /* PointBlock+CoreDataClass.swift in Sources */,
 				E6AC8AE42C043F140052A91A /* DateRange+CoreDataClass.swift in Sources */,

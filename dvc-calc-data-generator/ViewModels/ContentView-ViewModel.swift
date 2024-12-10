@@ -26,7 +26,18 @@ extension ContentView {
         let container = NSPersistentContainer(name: "DVCCalcModel")
         let storeURL = URL.documentsDirectory.appending(path: "dvcTest.store")
         
-        let disneyWorldResortShortNames = ["Riviera", "Polynesian", "Boulder Ridge", "The Cabins"]
+        let disneyWorldResortShortNames = ["Riviera", "Polynesian", "Boulder Ridge", "The Cabins",
+                                           "Kidani Village", "Jambo House", "Bay Lake Tower", "Beach Club",
+                                           "Old Key West", "Copper Creek", "BoardWalk", "Saratoga Springs",
+                                           "Grand Floridian"]
+        
+        let disneyWorldLargeResortShortNames = ["Polynesian", "Kidani Village", "Jambo House", "Grand Floridian"]
+        
+        let grandCaliforniaShortNames = ["Grand Californian"]
+        let hotelCaliforniaShortNames = ["Disneyland Hotel"]
+        let veroBeachShortNames = ["Vero Beach"]
+        let hiltonHeadShortNames = ["Hilton Head Island"]
+        let aulaniShortNames = ["Aulani"]
         
         func saveResort() {
             
@@ -157,11 +168,38 @@ extension ContentView {
             guard let selectedResort = selectedResort else { return }
             
             if disneyWorldResortShortNames.contains(selectedResort.wrappedShortName) {
+                
+                if disneyWorldLargeResortShortNames.contains(selectedResort.wrappedShortName) {
+//                    selectedPointBlocks = buildDisneyFirstHalf2026PointBlocks()
+                    selectedPointBlocks = buildDisneySecondHalf2026PointBlocks()
+                } else {
                 selectedPointBlocks = buildDisney2026PointBlocks()
+//                selectedPointBlocks = buildDisney2025PointBlocks()  // used to create the VGF i forgot
+                    
+                }
+                    
+                    self.pointValues = self.createPointValueInputs(pointBlocks: selectedPointBlocks, roomTypes: selectedResort.roomTypeArray)
+            } else if grandCaliforniaShortNames.contains(selectedResort.wrappedShortName) {
+                selectedPointBlocks = buildGrandCal2026PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: selectedPointBlocks, roomTypes: selectedResort.roomTypeArray)
+            } else if hotelCaliforniaShortNames.contains(selectedResort.wrappedShortName) {
+                selectedPointBlocks = buildDisneylandHotel2026PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: selectedPointBlocks, roomTypes: selectedResort.roomTypeArray)
+            } else if veroBeachShortNames.contains(selectedResort.wrappedShortName) {
+                selectedPointBlocks = buildVeroBeach2026PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: selectedPointBlocks, roomTypes: selectedResort.roomTypeArray)
+            } else if hiltonHeadShortNames.contains(selectedResort.wrappedShortName) {
+                selectedPointBlocks = buildHiltonHead2026PointBlocks()
+                
+                self.pointValues = self.createPointValueInputs(pointBlocks: selectedPointBlocks, roomTypes: selectedResort.roomTypeArray)
+            } else if aulaniShortNames.contains(selectedResort.wrappedShortName) {
+                selectedPointBlocks = buildAulani2026PointBlocks()
                 
                 self.pointValues = self.createPointValueInputs(pointBlocks: selectedPointBlocks, roomTypes: selectedResort.roomTypeArray)
             }
-            
         }
         
         func saveSelectedResort() {
@@ -222,12 +260,40 @@ extension ContentView {
             container.loadPersistentStores { description, error in
                 
                 loadRivieraResortData(context: self.container.viewContext)
-                
+
                 loadPolyResortData(context: self.container.viewContext)
-                
+
                 loadBoulderRidgeResortData(context: self.container.viewContext)
-                
+
                 loadCabinResortData(context: self.container.viewContext)
+                
+                loadKidaniVillageResortData(context: self.container.viewContext)
+
+                loadJamboHouseResortData(context: self.container.viewContext)
+
+                loadBayLakeResortData(context: self.container.viewContext)
+
+                loadBeachClubResortData(context: self.container.viewContext)
+                
+                loadOldKeyWestResortData(context: self.container.viewContext)
+                
+                loadCopperCreekResortData(context: self.container.viewContext)
+                
+                loadBoardwalkResortData(context: self.container.viewContext)
+                
+                loadSaratogaSpringsResortData(context: self.container.viewContext)
+                
+                loadGrandFloridianResortData(context: self.container.viewContext)
+                
+                loadGrandCalifornianResortData(context: self.container.viewContext)
+                
+                loadDisneyLandHotelResortData(context: self.container.viewContext)
+                
+                loadVeroBeachResortData(context: self.container.viewContext)
+                
+                loadHiltonHeadResortData(context: self.container.viewContext)
+                
+                loadAulaniResortData(context: self.container.viewContext)
             }
             
             do {
@@ -280,8 +346,8 @@ extension ContentView {
             let fallRange = DateRange(context: container.viewContext)
             let endNovRange = DateRange(context: container.viewContext)
             fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 1))!
-            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 25))!
-            endNovRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 29))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 24))!
+            endNovRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
             endNovRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 30))!
             pointBlock5.dateRanges = [fallRange, endNovRange]
             pointBlock5.order = 5
@@ -291,25 +357,401 @@ extension ContentView {
             let endAprilRange = DateRange(context: container.viewContext)
             let thanksgivingRange = DateRange(context: container.viewContext)
             springRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 16))!
-            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 12))!
-            endAprilRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 21))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 28))!
+            endAprilRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 6))!
             endAprilRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 30))!
-            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 26))!
-            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 25))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 27))!
             pointBlock6.dateRanges = [springRange, endAprilRange, thanksgivingRange]
             pointBlock6.order = 6
             
             let pointBlock7 = PointBlock(context: container.viewContext)
             let springBreakRange = DateRange(context: container.viewContext)
             let holidayRange = DateRange(context: container.viewContext)
-            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 13))!
-            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 20))!
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 29))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 5))!
             holidayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 24))!
             holidayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
             pointBlock7.dateRanges = [springBreakRange, holidayRange]
             pointBlock7.order = 7
             
             return [pointBlock1, pointBlock2, pointBlock3, pointBlock4, pointBlock5, pointBlock6, pointBlock7]
+        }
+        
+        func buildDisneyFirstHalf2026PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            let septRange = DateRange(context: container.viewContext)
+            septRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 1))!
+            septRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 30))!
+            pointBlock1.dateRanges = [septRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let janRange = DateRange(context: container.viewContext)
+            let beginMayRange = DateRange(context: container.viewContext)
+            janRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+            janRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 31))!
+            beginMayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 1))!
+            beginMayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 14))!
+            pointBlock2.dateRanges = [janRange, beginMayRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let endMayRange = DateRange(context: container.viewContext)
+            let beginDecRange = DateRange(context: container.viewContext)
+            endMayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 15))!
+            endMayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 10))!
+            beginDecRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 1))!
+            beginDecRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 23))!
+            pointBlock3.dateRanges = [endMayRange, beginDecRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let beginFebRange = DateRange(context: container.viewContext)
+            let summerRange = DateRange(context: container.viewContext)
+            beginFebRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 1))!
+            beginFebRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 15))!
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 11))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 31))!
+            pointBlock4.dateRanges = [beginFebRange, summerRange]
+            pointBlock4.order = 4
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
+        }
+        
+        func buildDisneySecondHalf2026PointBlocks() -> [PointBlock] {
+            
+            
+            let pointBlock5 = PointBlock(context: container.viewContext)
+            let fallRange = DateRange(context: container.viewContext)
+            let endNovRange = DateRange(context: container.viewContext)
+            fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 1))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 24))!
+            endNovRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
+            endNovRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 30))!
+            pointBlock5.dateRanges = [fallRange, endNovRange]
+            pointBlock5.order = 5
+            
+            let pointBlock6 = PointBlock(context: container.viewContext)
+            let springRange = DateRange(context: container.viewContext)
+            let endAprilRange = DateRange(context: container.viewContext)
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 16))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 28))!
+            endAprilRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 6))!
+            endAprilRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 30))!
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 25))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 27))!
+            pointBlock6.dateRanges = [springRange, endAprilRange, thanksgivingRange]
+            pointBlock6.order = 6
+            
+            let pointBlock7 = PointBlock(context: container.viewContext)
+            let springBreakRange = DateRange(context: container.viewContext)
+            let holidayRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 29))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 5))!
+            holidayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 24))!
+            holidayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
+            pointBlock7.dateRanges = [springBreakRange, holidayRange]
+            pointBlock7.order = 7
+            
+            return [pointBlock5, pointBlock6, pointBlock7]
+        }
+        
+        func buildDisneylandHotel2026PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            let janRange = DateRange(context: container.viewContext)
+            janRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+            janRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 31))!
+            pointBlock1.dateRanges = [janRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let beginMayRange = DateRange(context: container.viewContext)
+            beginMayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 1))!
+            beginMayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 22))!
+            let endSummerRange = DateRange(context: container.viewContext)
+            endSummerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 16))!
+            endSummerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 15))!
+            pointBlock2.dateRanges = [beginMayRange, endSummerRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let febMarRange = DateRange(context: container.viewContext)
+            febMarRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 1))!
+            febMarRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 14))!
+            let endSeptRange = DateRange(context: container.viewContext)
+            endSeptRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 16))!
+            endSeptRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 30))!
+            pointBlock3.dateRanges = [febMarRange, endSeptRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let endMayRange = DateRange(context: container.viewContext)
+            endMayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 23))!
+            endMayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 31))!
+            let octNovRange = DateRange(context: container.viewContext)
+            octNovRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 1))!
+            octNovRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 23))!
+            let lateFallRange = DateRange(context: container.viewContext)
+            lateFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
+            lateFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 17))!
+            pointBlock4.dateRanges = [endMayRange, octNovRange, lateFallRange]
+            pointBlock4.order = 4
+            
+            let pointBlock5 = PointBlock(context: container.viewContext)
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 1))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 15))!
+            pointBlock5.dateRanges = [summerRange]
+            pointBlock5.order = 5
+            
+            let pointBlock6 = PointBlock(context: container.viewContext)
+            let earlySpringRange = DateRange(context: container.viewContext)
+            earlySpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 15))!
+            earlySpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 28))!
+            let lateAprilRange = DateRange(context: container.viewContext)
+            lateAprilRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 6))!
+            lateAprilRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 30))!
+            pointBlock6.dateRanges = [earlySpringRange, lateAprilRange]
+            pointBlock6.order = 6
+            
+            let pointBlock7 = PointBlock(context: container.viewContext)
+            let springBreakRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 29))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 5))!
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 24))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 27))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 18))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
+            pointBlock7.dateRanges = [springBreakRange, thanksgivingRange, christmasRange]
+            pointBlock7.order = 7
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4, pointBlock5, pointBlock6, pointBlock7]
+        }
+        
+        func buildGrandCal2026PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            let janFebRange = DateRange(context: container.viewContext)
+            janFebRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 4))!
+            janFebRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 21))!
+            let earlyFallRange = DateRange(context: container.viewContext)
+            earlyFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 6))!
+            earlyFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 1))!
+            pointBlock1.dateRanges = [janFebRange, earlyFallRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let lateSpringRange = DateRange(context: container.viewContext)
+            lateSpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 12))!
+            lateSpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 28))!
+            let fallRange = DateRange(context: container.viewContext)
+            fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 2))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 23))!
+            let lateFallRange = DateRange(context: container.viewContext)
+            lateFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 29))!
+            lateFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 17))!
+            pointBlock2.dateRanges = [lateSpringRange, fallRange, lateFallRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let earlySpringRange = DateRange(context: container.viewContext)
+            earlySpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 22))!
+            earlySpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 26))!
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 29))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 5))!
+            pointBlock3.dateRanges = [earlySpringRange, summerRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let newYearRange = DateRange(context: container.viewContext)
+            newYearRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+            newYearRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 3))!
+            let springBreakRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 27))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 11))!
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 24))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 18))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
+            pointBlock4.dateRanges = [newYearRange, springBreakRange, thanksgivingRange, christmasRange]
+            pointBlock4.order = 4
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
+        }
+        
+        func buildVeroBeach2026PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            
+            let fallRange = DateRange(context: container.viewContext)
+            fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 1))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 24))!
+            pointBlock1.dateRanges = [fallRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let mayRange = DateRange(context: container.viewContext)
+            mayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 1))!
+            mayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 31))!
+            let earlyDecemberRange = DateRange(context: container.viewContext)
+            earlyDecemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
+            earlyDecemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 23))!
+            pointBlock2.dateRanges = [mayRange, earlyDecemberRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let janRange = DateRange(context: container.viewContext)
+            janRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+            janRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 31))!
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 1))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 31))!
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 25))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 27))!
+            pointBlock3.dateRanges = [janRange, summerRange, thanksgivingRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let lateWinterRange = DateRange(context: container.viewContext)
+            lateWinterRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 1))!
+            lateWinterRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 21))!
+            let springBreakRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 12))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 30))!
+            pointBlock4.dateRanges = [lateWinterRange, springBreakRange]
+            pointBlock4.order = 4
+            
+            let pointBlock5 = PointBlock(context: container.viewContext)
+            let springRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 22))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 11))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 24))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
+            pointBlock5.dateRanges = [springRange, christmasRange]
+            pointBlock5.order = 5
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4, pointBlock5]
+        }
+        
+        func buildHiltonHead2026PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            
+            let janRange = DateRange(context: container.viewContext)
+            janRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+            janRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 31))!
+            let earlyDecemberRange = DateRange(context: container.viewContext)
+            earlyDecemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 1))!
+            earlyDecemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 17))!
+            pointBlock1.dateRanges = [janRange, earlyDecemberRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let lateWinderRange = DateRange(context: container.viewContext)
+            lateWinderRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 1))!
+            lateWinderRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 31))!
+            let novemberRange = DateRange(context: container.viewContext)
+            novemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 1))!
+            novemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 30))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 18))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
+            pointBlock2.dateRanges = [lateWinderRange, novemberRange, christmasRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let springRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 1))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 10))!
+            let earlyFallRange = DateRange(context: container.viewContext)
+            earlyFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 28))!
+            earlyFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 31))!
+            pointBlock3.dateRanges = [springRange, earlyFallRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 11))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 27))!
+            pointBlock4.dateRanges = [summerRange]
+            pointBlock4.order = 4
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
+        }
+        
+        func buildAulani2026PointBlocks() -> [PointBlock] {
+            let pointBlock1 = PointBlock(context: container.viewContext)
+            
+            let janFebRange = DateRange(context: container.viewContext)
+            janFebRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 4))!
+            janFebRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 2, day: 28))!
+            let earlyFallRange = DateRange(context: container.viewContext)
+            earlyFallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 6))!
+            earlyFallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 10))!
+            let midNovemberRange = DateRange(context: container.viewContext)
+            midNovemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 10))!
+            midNovemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 23))!
+            let earlyDecemberRange = DateRange(context: container.viewContext)
+            earlyDecemberRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 29))!
+            earlyDecemberRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 17))!
+            pointBlock1.dateRanges = [janFebRange, earlyFallRange, midNovemberRange, earlyDecemberRange]
+            pointBlock1.order = 1
+            
+            let pointBlock2 = PointBlock(context: container.viewContext)
+            let endAprilRange = DateRange(context: container.viewContext)
+            endAprilRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 12))!
+            endAprilRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 28))!
+            let lateSpringRange = DateRange(context: container.viewContext)
+            lateSpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 6))!
+            lateSpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 28))!
+            let fallRange = DateRange(context: container.viewContext)
+            fallRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 11))!
+            fallRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 9))!
+            pointBlock2.dateRanges = [endAprilRange, lateSpringRange, fallRange]
+            pointBlock2.order = 2
+            
+            let pointBlock3 = PointBlock(context: container.viewContext)
+            let earlySpringRange = DateRange(context: container.viewContext)
+            earlySpringRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 1))!
+            earlySpringRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 24))!
+            let earlyMayRange = DateRange(context: container.viewContext)
+            earlyMayRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 29))!
+            earlyMayRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 5, day: 5))!
+            let endAugustRange = DateRange(context: container.viewContext)
+            endAugustRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 10))!
+            endAugustRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 5))!
+            pointBlock3.dateRanges = [earlySpringRange, earlyMayRange, endAugustRange]
+            pointBlock3.order = 3
+            
+            let pointBlock4 = PointBlock(context: container.viewContext)
+            let newYearRange = DateRange(context: container.viewContext)
+            newYearRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 1))!
+            newYearRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 1, day: 3))!
+            let springBreakRange = DateRange(context: container.viewContext)
+            springBreakRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: 25))!
+            springBreakRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 11))!
+            let springRange = DateRange(context: container.viewContext)
+            springRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 12))!
+            springRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 4, day: 26))!
+            let summerRange = DateRange(context: container.viewContext)
+            summerRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 6, day: 29))!
+            summerRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 8, day: 9))!
+            let thanksgivingRange = DateRange(context: container.viewContext)
+            thanksgivingRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 24))!
+            thanksgivingRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 28))!
+            let christmasRange = DateRange(context: container.viewContext)
+            christmasRange.startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 18))!
+            christmasRange.endDate = Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 31))!
+            pointBlock4.dateRanges = [newYearRange, springBreakRange, springRange, summerRange, thanksgivingRange, christmasRange]
+            pointBlock4.order = 4
+            
+            return [pointBlock1, pointBlock2, pointBlock3, pointBlock4]
         }
         
         func buildDisney2025PointBlocks() -> [PointBlock] {
@@ -999,7 +1441,7 @@ extension ContentView {
             }
         }
         
-        func createBeachClubResort() {
+func createBeachClubResort() {
             
             if let description = container.persistentStoreDescriptions.first {
                 
